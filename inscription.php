@@ -1,59 +1,37 @@
-<?php 
-    session_start();
-    require_once 'config.php'; // ajout connexion bdd 
-   // si la session existe pas soit si l'on est pas connecté on redirige
-    if(!isset($_SESSION['user'])){
-        header('Location:index.php');
-        die();
-    }
-
-    // On récupere les données de l'utilisateur
-    $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE token = ?');
-    $req->execute(array($_SESSION['user']));
-    $data = $req->fetch();
-   
-?>
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Espace membre</title>
-    
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="index1.css"
-  </head>
-  <body>
-  <div class="color">
-        <div class="text-center">
-                <h1 class="p-5">Bonjour <?php echo $data['pseudo']; ?> !</h1>
-        <form action="/ma-page-de-traitement" method="post">
-          <div>
-              <label for="name">Un genre</label>
-              <select name="genre" id="pet-select">
-    <option value="">--Veuillez chosir un genre de film --</option>
-    <option value="action">action</option>
-    <option value="aventure">aventure</option>
-    <option value="comédie">comédie</option>
-</select>
-          </div>
-          <div>
-              <label for="mail">Un réalisateur</label>
-              <select name="pets" id="pet-select">
-                  <option value="">--Veuillez chosir un réalisateur de film --</option>
-                  <option value="Spielberg">Spielberg</option>
-                  <option value="Lucas">Lucas</option>
-                  <option value="Kubric">Kubric</option>
-              </select>
-          </div>
-          <div>
-              <label for="msg">Film</label>
-              <textarea id="msg" name="user_message"></textarea>
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="author" content="NoS1gnal"/>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <link rel="stylesheet" href="index1.css">
+            <title>Inscription</title>
+        </head>
+        <body>
+        <div class="login-form"
+                ?>
+            
+            <form action="inscription_traitement.php" method="post">
+                <h2 class="text-center">Inscription</h2>       
+                <div class="form-group">
+                    <input type="text" name="pseudo" class="form-control" placeholder="Pseudo" required="required" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="Email" required="required" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Mot de passe" required="required" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password_retype" class="form-control" placeholder="Re-tapez le mot de passe" required="required" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Inscription</button>
+                </div>   
+            </form>
+            <div> <p><a href="http://192.168.65.47/Site/php/SiteFilm/"></a></p></div>
         </div>
-      </form>       
-                <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
-                <a href="landing.php" class="btn btn-danger btn-lg">valider</a>
-        </div>
-  </div>
-  </body>
+        </body>
 </html>
